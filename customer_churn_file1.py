@@ -1,9 +1,12 @@
 import pandas as pd
+import numpy as np
+import matplotlib.pylab as plt
 
-data = pd.read_csv("project_customer_churn/customer_churn.csv")
+
+data = pd.read_csv("/home/cybacor/Desktop/shahal/projects/project_customer_churn/customer_churn.csv")
 
 def customer_churn():
-    # print(data)
+    print(data)
 
 
     # missing values and handle them appropriately
@@ -33,8 +36,35 @@ def customer_churn():
     largest = data6.nlargest(1)
     print(largest)
 
+    # bar chart comparing average subscription lengths of churned vs. non-churned customers
+    data7 = data.groupby("Churn")["Subscription Length (months)"].mean()
+    xpoint = data7.index
+    ypoint = data7.values
+    plt.bar(xpoint,ypoint)
+    plt.xlabel("churned vs unchurned customers")
+    plt.ylabel("average subscription")
+    plt.title("bar chart")
+    plt.plot()
+    plt.show()
 
+    ## pie chart to show the distribution of churned customers across different regions
+    plt.pie(data4,labels = data4.index,autopct='%1.2f%%')
+    plt.show()
 
+    # histogram distribution of total charges among customers
+    data8 = data.groupby("Customer ID")["Total Charges (INR)"].sum()
+    plt.hist(data8,bins=30, density=True, color='blue', edgecolor='black', alpha=0.7)
+    plt.title("distribution of total charges among customers")
+    plt.show()
+
+    # Visualize the relationship between monthly charges and total charge
+    plt.scatter(data["Monthly Charges (INR)"],data["Total Charges (INR)"],alpha=0.5, color='blue')
+    plt.title('Scatter Plot: Monthly Charges vs Total Charges')
+    plt.xlabel('Monthly Charges (INR)')
+    plt.ylabel('Total Charges (INR)')
+    plt.show()
+
+0
 
 
 
