@@ -49,11 +49,12 @@ def customer_churn():
 
     ## pie chart to show the distribution of churned customers across different regions
     plt.pie(data4,labels = data4.index,autopct='%1.2f%%')
+    plt.title(" distribution of churned customers across different regions")
     plt.show()
 
     # histogram distribution of total charges among customers
     data8 = data.groupby("Customer ID")["Total Charges (INR)"].sum()
-    plt.hist(data8,bins=30, density=True, color='blue', edgecolor='black', alpha=0.7)
+    plt.hist(data8,bins=30, density=True, color='yellow', edgecolor='black', alpha=0.7)
     plt.title("distribution of total charges among customers")
     plt.show()
 
@@ -63,10 +64,6 @@ def customer_churn():
     plt.xlabel('Monthly Charges (INR)')
     plt.ylabel('Total Charges (INR)')
     plt.show()
-
-0
-
-
 
 
 
